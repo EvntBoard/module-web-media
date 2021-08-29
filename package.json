@@ -1,0 +1,17 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/sound/",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^1.5.1",
+    "vite": "^2.4.4"
+  },
+  "dependencies": {
+    "howler": "^2.2.3",
+    "socket.io-client": "^4.1.3"
+  }
+}
