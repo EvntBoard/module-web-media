@@ -1,23 +1,25 @@
 import { Howl } from 'howler';
-import io from 'socket.io-client';
+import { EvntCom } from 'evntcom-js';
 
 const regexBase64 = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 
+const NAME = 'media'
+
 window.addEventListener('load', function () {
-  let url
+  let websocket
   if (import.meta.env.MODE === 'development') {
-    url = '127.0.0.1:5000'
+    websocket = new EvntCom(NAME, 5000, 'localhost')
   } else {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('host')) {
-      url = urlParams.get('host')
+    if (urlParams.get('host') && urlParams.get('port')) {
+      websocket = new EvntCom(NAME, parseInt(urlParams.get('port'), 10), urlParams.get('host'))
     } else {
-      url = window.location.origin
+      websocket = new EvntCom(NAME)
     }
   }
 
-  const socket = io(url, { path: '/ws' });
-  socket.on('play', ({file, uniqueId, volume}) => {
+  websocket.expose('play', async (file, volume) => {
+    console.log({ file, volume })
     if (typeof file === "object") {
       const playsFiles = file.map((i) => {
         if (regexBase64.test(i)) {
@@ -34,9 +36,7 @@ window.addEventListener('load', function () {
       // playing i+1 audio (= chaining audio files)
       const onend = () => {
         let newCount = pCount + 1
-        if (newCount >= howlerBank.length) {
-          socket.emit(`play-${uniqueId}`);
-        } else {
+        if (newCount < howlerBank.length) {
           pCount = newCount;
           howlerBank[pCount].play();
         }
@@ -48,7 +48,7 @@ window.addEventListener('load', function () {
           volume: volume || 1,
           onend,
           onplayerror: (_, error) => {
-            socket.emit(`play-error-${uniqueId}`, error)
+            throw new Error(error)
           },
         })
         howlerBank.push(howler)
@@ -63,18 +63,15 @@ window.addEventListener('load', function () {
         playFile = `${window.location.origin}/media/${file}`
       }
 
-      const sound = new Howl({
+      new Howl({
         src: [playFile],
         autoplay: true,
         volume: volume || 1,
-        onend: () => {
-          socket.emit(`play-${uniqueId}`)
-        },
+        onend: () => {},
         onplayerror: (_, error) => {
-          socket.emit(`play-error-${uniqueId}`, error)
+          throw new Error(error)
         },
       });
-      sound.play();
     }
   })
 })

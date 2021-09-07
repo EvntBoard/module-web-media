@@ -11,7 +11,7 @@
     "vite": "^2.4.4"
   },
   "dependencies": {
-    "howler": "^2.2.3",
-    "socket.io-client": "^4.1.3"
+    "evntcom-js": "https://github.com/EvntBoard/evntcom-js.git",
+    "howler": "^2.2.3"
   }
 }
