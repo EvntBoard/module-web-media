@@ -19,7 +19,6 @@ window.addEventListener('load', function () {
   }
 
   websocket.expose('play', async (file, volume) => {
-    console.log({ file, volume })
     if (typeof file === "object") {
       const playsFiles = file.map((i) => {
         if (regexBase64.test(i)) {
