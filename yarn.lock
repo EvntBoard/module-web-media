@@ -40,7 +40,7 @@ esbuild@^0.12.17:
 
 "evntcom-js@https://github.com/EvntBoard/evntcom-js.git":
   version "1.0.0"
-  resolved "https://github.com/EvntBoard/evntcom-js.git#0c145ae8b73c1dca6d9f3280715ba8444b0284b2"
+  resolved "https://github.com/EvntBoard/evntcom-js.git#5c07f026e89e46586443bb51f2def5e88af80869"
   dependencies:
     "@msgpack/msgpack" "^2.7.1"
     uuid "^8.3.2"

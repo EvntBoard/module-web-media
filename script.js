@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-import { EvntCom } from 'evntcom-js';
+import { EvntComWebSocket } from 'evntcom-js/dist/web';
 
 const regexBase64 = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 
@@ -8,13 +8,21 @@ const NAME = 'media'
 window.addEventListener('load', function () {
   let websocket
   if (import.meta.env.MODE === 'development') {
-    websocket = new EvntCom(NAME, 5000, 'localhost')
+    websocket = new EvntComWebSocket({
+      host: 'localhost',
+      port: 5000,
+      name: NAME,
+    })
   } else {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('host') && urlParams.get('port')) {
-      websocket = new EvntCom(NAME, parseInt(urlParams.get('port'), 10), urlParams.get('host'))
+      websocket = new EvntComWebSocket({
+        host: urlParams.get('host'),
+        port: parseInt(urlParams.get('port'), 10),
+        name: NAME,
+      });
     } else {
-      websocket = new EvntCom(NAME)
+      websocket = new EvntComWebSocket({ name: NAME })
     }
   }
 
