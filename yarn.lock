@@ -3,9 +3,9 @@
 
 
 "@babel/standalone@^7.14.9":
-  version "7.15.5"
-  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.15.5.tgz#6aba337fa718bfa42ce8665f7377d7911487dda8"
-  integrity sha512-rho2fzDGLrdYVbl0S71I8z6AREWnVvADzv7Gb4TLKhqpE6cJAvno0ALMuF253+wqhN8futx4ELWQpBYMxi4jmA==
+  version "7.15.6"
+  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.15.6.tgz#c16866ec1ef7196be7e8c8f1d5c38d436c723117"
+  integrity sha512-1N9+KHL9ZYKiDDXFgBvg8Sl135evIJgP/YZdOhqdfMMTL/zuAm6bUi/FYEwzTXYhQS8MBtRMVmmcIurif7hYiQ==
 
 "@msgpack/msgpack@^2.7.1":
   version "2.7.1"
@@ -29,18 +29,18 @@ colorette@^1.2.2:
   integrity sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==
 
 core-js@^3.16.0:
-  version "3.17.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.2.tgz#f960eae710dc62c29cca93d5332e3660e289db10"
-  integrity sha512-XkbXqhcXeMHPRk2ItS+zQYliAMilea2euoMsnpRRdDad6b2VY6CQQcwz1K8AnWesfw4p165RzY0bTnr3UrbYiA==
+  version "3.17.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.3.tgz#8e8bd20e91df9951e903cabe91f9af4a0895bc1e"
+  integrity sha512-lyvajs+wd8N1hXfzob1LdOCCHFU4bGMbqqmLn1Q4QlCpDqWPpGf+p0nj+LNrvDDG33j0hZXw2nsvvVpHysxyNw==
 
 esbuild@^0.12.17:
-  version "0.12.25"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.25.tgz#c2131cef022cf9fe94aaa5e00110b27fc976221a"
-  integrity sha512-woie0PosbRSoN8gQytrdCzUbS2ByKgO8nD1xCZkEup3D9q92miCze4PqEI9TZDYAuwn6CruEnQpJxgTRWdooAg==
+  version "0.12.28"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.28.tgz#84da0d2a0d0dee181281545271e0d65cf6fab1ef"
+  integrity sha512-pZ0FrWZXlvQOATlp14lRSk1N9GkeJ3vLIwOcUoo3ICQn9WNR4rWoNi81pbn6sC1iYUy7QPqNzI3+AEzokwyVcA==
 
 "evntcom-js@https://github.com/EvntBoard/evntcom-js.git":
   version "1.0.0"
-  resolved "https://github.com/EvntBoard/evntcom-js.git#5c07f026e89e46586443bb51f2def5e88af80869"
+  resolved "https://github.com/EvntBoard/evntcom-js.git#8d0a9d94ad988d68877a78fb9b565cb663df550f"
   dependencies:
     "@msgpack/msgpack" "^2.7.1"
     uuid "^8.3.2"
@@ -141,9 +141,9 @@ uuid@^8.3.2:
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 vite@^2.4.4:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.5.4.tgz#2dab98835be64c4157eba225e0becb9d373f608a"
-  integrity sha512-EAdbX8A6MJaqC6UuicZtoxY9+BdaBdcGVaROXvsu+vnlGyzZzm63QQgANJryIB0DvenveHAoCriN+dAnoS+TIQ==
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.5.7.tgz#e495be9d8bcbf9d30c7141efdccacde746ee0125"
+  integrity sha512-hyUoWmRPhjN1aI+ZSBqDINKdIq7aokHE2ZXiztOg4YlmtpeQtMwMeyxv6X9YxHZmvGzg/js/eATM9Z1nwyakxg==
   dependencies:
     esbuild "^0.12.17"
     postcss "^8.3.6"
