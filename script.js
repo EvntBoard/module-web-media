@@ -4,27 +4,14 @@ import { EvntComWebSocket } from 'evntcom-js/dist/web';
 const regexBase64 = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 
 const NAME = 'media'
+const isDev = import.meta.env.MODE === 'development'
 
 window.addEventListener('load', function () {
-  let websocket
-  if (import.meta.env.MODE === 'development') {
-    websocket = new EvntComWebSocket({
-      host: 'localhost',
-      port: 5000,
-      name: NAME,
-    })
-  } else {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('host') && urlParams.get('port')) {
-      websocket = new EvntComWebSocket({
-        host: urlParams.get('host'),
-        port: parseInt(urlParams.get('port'), 10),
-        name: NAME,
-      });
-    } else {
-      websocket = new EvntComWebSocket({ name: NAME })
-    }
-  }
+  let websocket = new EvntComWebSocket({
+    host: isDev ? 'localhost' : window.location.port,
+    port: isDev ? 5000 : window.location.hostname,
+    name: NAME,
+  })
 
   websocket.expose('play', async (file, volume) => {
     if (typeof file === "object") {
