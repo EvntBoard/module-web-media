@@ -8,8 +8,8 @@ const isDev = import.meta.env.MODE === 'development'
 
 window.addEventListener('load', function () {
   let websocket = new EvntComWebSocket({
-    host: isDev ? 'localhost' : window.location.port,
-    port: isDev ? 5000 : window.location.hostname,
+    host: isDev ? 'localhost' : window.location.hostname,
+    port: isDev ? 5000 : window.location.port,
     name: NAME,
   })
 
