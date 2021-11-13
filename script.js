@@ -68,4 +68,6 @@ window.addEventListener('load', function () {
       });
     }
   })
+
+  websocket.connect();
 })
