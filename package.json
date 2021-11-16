@@ -1,9 +1,9 @@
 {
-  "name": "vite-project",
-  "version": "0.0.0",
+  "name": "module-media",
+  "version": "0.0.1",
   "scripts": {
     "start": "vite",
-    "build": "vite build --base=/modules/media/",
+    "build": "vite build --base=/modules/module-media/",
     "serve": "vite preview"
   },
   "devDependencies": {
