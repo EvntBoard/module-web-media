@@ -1,0 +1,52 @@
+name: Module Media
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Build
+        run: |
+          yarn
+          yarn build
+
+      - name: Artefact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Module Media
+          path: ./dist/
+
+      - name: Copy metadata.json
+        run: |
+          cp ./metadata.json ./dist/metadata.json
+
+      - id: get_version
+        uses: battila7/get-version-action@v2
+
+      - name: Pack
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd ./dist/
+          npx bestzip ../module-media-${{ steps.get_version.outputs.version }}.zip .
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          draft: true
+          files: |
+            *.zip

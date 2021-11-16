@@ -1,3 +1,4 @@
+import path from 'path'
 import legacy from '@vitejs/plugin-legacy'
 
 export default {
@@ -8,5 +9,8 @@ export default {
     legacy({
       targets: ['defaults', 'not IE 11']
     })
-  ]
+  ],
+  build: {
+    outDir: path.join(__dirname, "dist", "module"),
+  }
 }
