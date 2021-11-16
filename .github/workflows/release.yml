@@ -19,23 +19,19 @@ jobs:
         with:
           node-version: 14
 
+      - id: get_version
+        uses: battila7/get-version-action@v2
+
       - name: Build
         run: |
           yarn
           yarn build
 
-      - name: Artefact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Module Media
-          path: ./dist/
-
-      - name: Copy metadata.json
+      - name: Copy metadata.json & config.json & generate REPO + VERSION
         run: |
           cp ./metadata.json ./dist/metadata.json
-
-      - id: get_version
-        uses: battila7/get-version-action@v2
+          echo ${{ github.repository }} > ./dist/REPO.TXT
+          echo ${{ steps.get_version.outputs.version }} > ./dist/VERSION.TXT
 
       - name: Pack
         if: startsWith(github.ref, 'refs/tags/')
