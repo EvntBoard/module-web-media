@@ -1,4 +1,3 @@
-import path from 'path'
 import legacy from '@vitejs/plugin-legacy'
 
 export default {
@@ -11,6 +10,6 @@ export default {
     })
   ],
   build: {
-    outDir: path.join(__dirname, "dist", "module"),
+    outDir: "build",
   }
 }
