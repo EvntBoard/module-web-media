@@ -7,6 +7,13 @@
   resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.16.12.tgz#bfa53fe78d223a781ca4fd8e14139743b2e0a038"
   integrity sha512-Yhx3HHbBLCE0AzpmAXQ2h0adOz0N4Ga64EC7BibFPbdE0c9/davL/NCdHJf/xuQUbwtCg99g1ZLUsMvTLgBQ2w==
 
+"@evntboard/evntcom-browser@https://github.com/EvntBoard/evntcom-browser.git":
+  version "0.0.1"
+  resolved "https://github.com/EvntBoard/evntcom-browser.git#0868799265945305cd04c46e2e7319d5bd97cef1"
+  dependencies:
+    core-js "3"
+    uuid "^8.3.2"
+
 "@vitejs/plugin-legacy@^1.5.1":
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-legacy/-/plugin-legacy-1.6.4.tgz#36cf0cc10bd1f32902719d62c8f23c9d433eb3a8"
@@ -18,7 +25,7 @@
     regenerator-runtime "^0.13.9"
     systemjs "^6.11.0"
 
-core-js@^3.19.1:
+core-js@3, core-js@^3.19.1:
   version "3.20.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.3.tgz#c710d0a676e684522f3db4ee84e5e18a9d11d69a"
   integrity sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==
@@ -131,14 +138,6 @@ esbuild@^0.13.12:
     esbuild-windows-64 "0.13.15"
     esbuild-windows-arm64 "0.13.15"
 
-"evntcom-js@https://github.com/EvntBoard/evntcom-js.git":
-  version "1.0.0"
-  resolved "https://github.com/EvntBoard/evntcom-js.git#b7b7db9159e5842103df9067ed8f1354fa564bcf"
-  dependencies:
-    isomorphic-ws "^4.0.1"
-    uuid "^8.3.2"
-    ws "^8.4.2"
-
 fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
@@ -167,11 +166,6 @@ is-core-module@^2.8.1:
   integrity sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==
   dependencies:
     has "^1.0.3"
-
-isomorphic-ws@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-4.0.1.tgz#55fd4cd6c5e6491e76dc125938dd863f5cd4f2dc"
-  integrity sha512-BhBvN2MBpWTaSHdWRb/bwdZJ1WaehQ2L1KngkCkfLUGF0mAWAT1sQUQacEmQ0jXkFw/czDXPNQSL5u2/Krsz1w==
 
 magic-string@^0.25.7:
   version "0.25.7"
@@ -219,9 +213,9 @@ resolve@^1.20.0:
     supports-preserve-symlinks-flag "^1.0.0"
 
 rollup@^2.59.0:
-  version "2.66.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.66.0.tgz#ee529ea15a20485d579039637fec3050bad03bbb"
-  integrity sha512-L6mKOkdyP8HK5kKJXaiWG7KZDumPJjuo1P+cfyHOJPNNTK3Moe7zCH5+fy7v8pVmHXtlxorzaBjvkBMB23s98g==
+  version "2.66.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.66.1.tgz#366b0404de353c4331d538c3ad2963934fcb4937"
+  integrity sha512-crSgLhSkLMnKr4s9iZ/1qJCplgAgrRY+igWv8KhG/AjKOJ0YX/WpmANyn8oxrw+zenF3BXWDLa7Xl/QZISH+7w==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -261,8 +255,3 @@ vite@^2.4.4:
     rollup "^2.59.0"
   optionalDependencies:
     fsevents "~2.3.2"
-
-ws@^8.4.2:
-  version "8.4.2"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.4.2.tgz#18e749868d8439f2268368829042894b6907aa0b"
-  integrity sha512-Kbk4Nxyq7/ZWqr/tarI9yIt/+iNNFOjBXEWgTb4ydaNHBNGgvf2QHbS9fdfsndfjFlFwEd4Al+mw83YkaD10ZA==

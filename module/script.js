@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-import { EvntCom } from 'evntcom-js';
+import EvntCom from '@evntboard/evntcom-browser';
 
 const regexBase64 = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 

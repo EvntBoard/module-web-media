@@ -29,10 +29,6 @@ jobs:
         run: |
           cp ./metadata.json ./dist/metadata.json
 
-      - name: Copy defaultConfig.json
-        run: |
-          cp ./config.json ./dist/config.json
-
       - name: Populate metadata.json __MODULE_REPO__
         uses: jacobtomlinson/gha-find-replace@v2
         with:
@@ -46,22 +42,6 @@ jobs:
           find: "__MODULE_VERSION__"
           replace: ${{ steps.get_version.outputs.version }}
           regex: false
-
-      - name: Copy triggers
-        run: |
-          if [[ -d "./triggers" ]]
-          then
-            mkdir ./dist/triggers
-            cp -a ./triggers/. ./dist/triggers
-          fi
-
-      - name: Copy shared
-        run: |
-          if [[ -d "./shared" ]]
-          then
-            mkdir ./dist/shared
-            cp -a ./shared/. ./dist/shared
-          fi
 
       - name: Build module
         run: |

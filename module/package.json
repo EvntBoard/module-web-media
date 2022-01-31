@@ -11,7 +11,7 @@
     "vite": "^2.4.4"
   },
   "dependencies": {
-    "evntcom-js": "https://github.com/EvntBoard/evntcom-js.git",
+    "@evntboard/evntcom-browser": "https://github.com/EvntBoard/evntcom-browser.git",
     "howler": "^2.2.3"
   }
 }
