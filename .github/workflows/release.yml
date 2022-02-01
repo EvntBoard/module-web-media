@@ -46,6 +46,7 @@ jobs:
       - name: Build module
         run: |
           cd module
+          yarn cache clean --all
           yarn
           yarn build
 
