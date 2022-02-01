@@ -46,8 +46,8 @@ jobs:
       - name: Build module
         run: |
           cd module
-          yarn cache clean --all
-          yarn
+          yarn cache clean
+          yarn install --network-concurrency 1
           yarn build
 
       - name: Copy module
