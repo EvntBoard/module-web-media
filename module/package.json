@@ -7,8 +7,8 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "@vitejs/plugin-legacy": "^1.5.1",
-    "vite": "^2.4.4"
+    "@vitejs/plugin-legacy": "^1.6.4",
+    "vite": "^2.7.13"
   },
   "dependencies": {
     "@evntboard/evntcom-browser": "https://github.com/EvntBoard/evntcom-browser.git",
