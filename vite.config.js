@@ -10,6 +10,6 @@ export default {
     })
   ],
   build: {
-    outDir: "build",
+    outDir: "dist",
   }
 }
