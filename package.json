@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "vite",
-    "build": "vite build --base=/modules/module-media/",
+    "build": "vite build --base=./",
     "serve": "vite preview"
   },
   "devDependencies": {
