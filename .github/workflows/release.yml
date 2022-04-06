@@ -38,12 +38,17 @@ jobs:
           yarn
           yarn build
 
+      - name: Prepare
+        shell: bash
+        run: |
+          mkdir -p ./build/module-media
+          mv -v ./dist/* ./build/module-media
+
       - name: Pack
         shell: bash
         run: |
-          mkdir ./build
-          cd ./dist
-          npx bestzip ../build/${{ github.event.repository.name }}-${{ steps.get_version.outputs.version }}.zip .
+          cd ./build
+          npx bestzip ../${{ github.event.repository.name }}-${{ steps.get_version.outputs.version }}.zip .
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -57,5 +62,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.repository.name }}-${{ steps.get_version.outputs.version }}
-          path: ./build/${{ github.event.repository.name }}-${{ steps.get_version.outputs.version }}.zip
+          path: ./build
           retention-days: 1
