@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let btn = document.getElementById('connect')
       btn.disabled = true;
       btn.innerText = "Connecting ...";
+
       const protocolPrefix = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+
       let webSocket
       if (isDev) {
         webSocket = new WebSocket(`${protocolPrefix}//localhost:5000/api-ws`);
@@ -33,17 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       );
 
-      webSocket.onopen = () => {
+      rpcServerAndClient.addMethod("connected", () => {
         btn.innerText = "Connected";
         btn.disabled = true;
         rpcServerAndClient.request("module.register", {
           name: NAME,
         });
-      }
+      })
 
-      webSocket.onmessage = (event) => {
-        rpcServerAndClient.receiveAndSend(JSON.parse(event.data.toString()));
-      };
+      webSocket.onmessage = (event) => rpcServerAndClient.receiveAndSend(JSON.parse(event.data.toString()));
 
       // On close, make sure to reject all the pending requests to prevent hanging.
       webSocket.onclose = (event) => {
@@ -54,13 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       };
 
-      rpcServerAndClient.addMethod('play', async (file, volume) => {
-        if (typeof file === "object") {
-          const playsFiles = file.map((i) => {
+      rpcServerAndClient.addMethod('play', async (files, volume) => {
+        if (Array.isArray(files) && files.length > 0) {
+          const playsFiles = files.map((i) => {
             if (regexBase64.test(i)) {
               return "data:audio/wav;base64," + i
             } else if (!i.startsWith('http')) {
-              return `${window.location.origin}/media/${i}`
+              return `${window.location.origin}/${i}`
             }
             return i;
           })
@@ -88,25 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             howlerBank.push(howler)
           });
-
           howlerBank[0].play();
         } else {
-          let playFile = file;
-          if (regexBase64.test(file)) {
-            playFile = "data:audio/wav;base64," + file
-          } else if (!file.startsWith('http')) {
-            playFile = `${window.location.origin}/media/${file}`
-          }
-
-          new Howl({
-            src: [playFile],
-            autoplay: true,
-            volume: volume || 1,
-            onend: () => {},
-            onplayerror: (_, error) => {
-              throw new Error(error)
-            },
-          });
+          console.error("Not valid payload", files)
         }
       })
     })
