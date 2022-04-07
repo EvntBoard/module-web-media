@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
         new JSONRPCClient((request) => {
           try {
             webSocket.send(JSON.stringify(request));
-            return Promise.resolve();
           } catch (error) {
-            return Promise.reject(error);
+            console.error(error)
           }
+          return Promise.resolve();
         })
       );
 
       rpcServerAndClient.addMethod("connected", () => {
         btn.innerText = "Connected";
         btn.disabled = true;
-        rpcServerAndClient.request("module.register", {
+        rpcServerAndClient.notify("module.register", {
           name: NAME,
         });
       })
