@@ -55,43 +55,47 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       rpcServerAndClient.addMethod('play', async ([files, volume]) => {
-        if (Array.isArray(files) && files.length > 0) {
-          const playsFiles = files.map((i) => {
-            if (regexBase64.test(i)) {
-              return "data:audio/wav;base64," + i
-            } else if (!i.startsWith('http')) {
-              return `${window.location.origin}/${i}`
-            }
-            return i;
-          })
-
-          let pCount = 0;
-          let howlerBank = [];
-
-          // playing i+1 audio (= chaining audio files)
-          const onend = () => {
-            let newCount = pCount + 1
-            if (newCount < howlerBank.length) {
-              pCount = newCount;
-              howlerBank[pCount].play();
-            }
-          };
-
-          playsFiles.forEach((current) => {
-            const howler = new Howl({
-              src: [current],
-              volume: volume || 1,
-              onend,
-              onplayerror: (_, error) => {
-                throw new Error(error)
-              },
+        return new Promise((resolve, reject) => {
+          if (Array.isArray(files) && files.length > 0) {
+            const playsFiles = files.map((i) => {
+              if (regexBase64.test(i)) {
+                return "data:audio/wav;base64," + i
+              } else if (!i.startsWith('http')) {
+                return `${window.location.origin}/${i}`
+              }
+              return i;
             })
-            howlerBank.push(howler)
-          });
-          howlerBank[0].play();
-        } else {
-          console.error("Not valid payload", files)
-        }
+
+            let pCount = 0;
+            let howlerBank = [];
+
+            // playing i+1 audio (= chaining audio files)
+            const onend = () => {
+              let newCount = pCount + 1
+              if (newCount < howlerBank.length) {
+                pCount = newCount;
+                howlerBank[pCount].play();
+              } else {
+                resolve(true)
+              }
+            };
+
+            playsFiles.forEach((current) => {
+              const howler = new Howl({
+                src: [current],
+                volume: volume || 1,
+                onend,
+                onplayerror: (_, error) => {
+                  reject(error)
+                },
+              })
+              howlerBank.push(howler)
+            });
+            howlerBank[0].play();
+          } else {
+            reject(new Error("Not valid payload"))
+          }
+        })
       })
     })
 })
