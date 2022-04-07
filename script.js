@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       };
 
-      rpcServerAndClient.addMethod('play', async (files, volume) => {
+      rpcServerAndClient.addMethod('play', async ([files, volume]) => {
         if (Array.isArray(files) && files.length > 0) {
           const playsFiles = files.map((i) => {
             if (regexBase64.test(i)) {
