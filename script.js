@@ -61,7 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
               if (regexBase64.test(i)) {
                 return "data:audio/wav;base64," + i
               } else if (!i.startsWith('http')) {
-                return `${window.location.origin}/${i}`
+                let url = window.location.origin
+                if (isDev) {
+                  url = "localhost:5000";
+                }
+                return `${url}/${i}`
               }
               return i;
             })
@@ -85,8 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 src: [current],
                 volume: volume || 1,
                 onend,
+                onloaderror: (_, error) => {
+                  console.log(_, error)
+                  reject(new Error("Error on load " + current + " " + error))
+                },
                 onplayerror: (_, error) => {
-                  reject(error)
+                  console.log(_, error)
+                  reject(new Error("Error on play " + current + " " + error))
                 },
               })
               howlerBank.push(howler)
