@@ -41,8 +41,8 @@ jobs:
       - name: Prepare
         shell: bash
         run: |
-          mkdir -p ./build/module-media
-          mv -v ./dist/* ./build/module-media
+          mkdir -p ./build/module-web-media
+          mv -v ./dist/* ./build/module-web-media
 
       - name: Pack
         shell: bash

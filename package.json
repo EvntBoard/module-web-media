@@ -1,5 +1,5 @@
 {
-  "name": "module-media",
+  "name": "module-web-media",
   "version": "0.0.1",
   "scripts": {
     "start": "vite",
