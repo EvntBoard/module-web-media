@@ -38,9 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
       rpcServerAndClient.addMethod("connected", () => {
         btn.innerText = "Connected";
         btn.disabled = true;
-        rpcServerAndClient.notify("module.register", {
-          name: NAME,
-        });
+        rpcServerAndClient.notify('session.register', {
+          name: 'module-web-media',
+          module: NAME
+        })
       })
 
       webSocket.onmessage = (event) => rpcServerAndClient.receiveAndSend(JSON.parse(event.data.toString()));
